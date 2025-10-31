@@ -4,7 +4,7 @@
 <dict>
 	<!-- Standard entitlements from provisioning profile -->
 	<key>application-identifier</key>
-	<string>822LACFRL7.com.example.flutterMoodmusic</string>
+	<string>822LACFRL7.com.myname.moodmusiic</string>
 	<key>com.apple.developer.team-identifier</key>
 	<string>822LACFRL7</string>
 	<key>get-task-allow</key>
