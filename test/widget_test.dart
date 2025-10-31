@@ -13,7 +13,10 @@ import 'package:flutter_moodmusic/main.dart';
 void main() {
   testWidgets('MoodMusic app smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MoodMusicApp());
+    await tester.pumpWidget(const MoodMusicApp(firebaseInitialized: false));
+
+    // Pump frames to allow the widget tree to settle
+    await tester.pump();
 
     // Verify that we start on the start screen
     expect(find.text('MoodMusic'), findsOneWidget);

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:camera/camera.dart';
@@ -131,6 +132,7 @@ class AppNavigator extends StatefulWidget {
 class _AppNavigatorState extends State<AppNavigator> {
   static const int _maxInitializationTime = 10; // seconds
   bool _initializationTimedOut = false;
+  Timer? _initializationTimer;
 
   @override
   void initState() {
@@ -139,7 +141,7 @@ class _AppNavigatorState extends State<AppNavigator> {
     debugPrint('Firebase initialized: ${widget.firebaseInitialized}');
 
     // Set a timeout for initialization
-    Future.delayed(const Duration(seconds: _maxInitializationTime), () {
+    _initializationTimer = Timer(const Duration(seconds: _maxInitializationTime), () {
       if (mounted) {
         debugPrint('⏰ Initialization timeout reached');
         setState(() {
@@ -147,6 +149,12 @@ class _AppNavigatorState extends State<AppNavigator> {
         });
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _initializationTimer?.cancel();
+    super.dispose();
   }
 
   @override
